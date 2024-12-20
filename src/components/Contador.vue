@@ -1,14 +1,16 @@
 <!-- A base de HTML -->
 <template>
-  <h2>{{ this.titulo }}</h2>
-  <p>{{ this.numero }} <sup>2</sup> = {{ calcularCuadradoComputed }}</p>
-  <p>{{ this.numero }} <sup>2</sup> = {{ calcularCuadradoComputed }}</p>
-  <p>{{ this.numero }} <sup>2</sup> = {{ calcularCuadradoComputed }}</p>
-  <p>{{ this.numero }} <sup>2</sup> = {{ calcularCuadradoComputed }}</p>
-  <p>{{ this.numero }} <sup>2</sup> = {{ calcularCuadradoComputed }}</p>
+  <h2>{{ encabezado }}: {{ valor2 }}</h2>
+  <p>{{ numero }} <sup>2</sup> = {{ calcularCuadradoComputed }}</p>
+  <p>{{ numero }} <sup>2</sup> = {{ calcularCuadradoComputed }}</p>
+  
     <div>
         <button v-on:click="incrementar()">+1</button>
         <button v-on:click="decrementar()">-1</button>
+    </div>
+
+    <div>
+      <h1 v-if="esVerdad">"Feliz Navidad"</h1>
     </div>
 </template>
 
@@ -17,7 +19,7 @@
 export default {
   data() {
     return {
-      numero: 10,
+      numero: this.valor,
       titulo: "Contador",
     };
   },
@@ -40,7 +42,42 @@ export default {
         console.log("Método calcularCuadradoComputed");
         return this.numero * this.numero;
     }
+  },
+
+  //Primera forma de declarar
+  //props: ['encabezado', 'valor']
+
+  //Segunda forma de declarar
+  props: {
+    encabezado: {
+      type: String,
+      required: true,
+      include: ['a'],
+      alert: "El encabezado es obligatorio",
+    },
+    valor: Number,
+    
+    valor2: {
+      type: Number,
+      required: false,
+      default: 77,
+      validator(value){
+        //Programo mi validacion bajo mi criterio
+        //Retorno true si es valido y false si no lo es
+        return value <= 77;
+      }
+    },
+
+    esVerdad: {
+      type: Boolean,
+      required: true,
+    },
+
+    arreglo: Array,
+    fecha: Date,
+    objetoPersona: Object,
   }
+
 };
 </script>
 
