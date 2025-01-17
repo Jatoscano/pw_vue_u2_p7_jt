@@ -3,11 +3,14 @@
     :src="imagen"
     alt="Imagen no vista"
   />
-  <input v-model="pregunta" type="text" placeholder="Hazme una pregunta" />
-  <p>Recuedra de cuando finalice la pregunta da un "?"</p>
 
-  <h1>{{ pregunta }}</h1>
-  <h2>{{ respuesta }}</h2>
+  <div class="seccion-pregunta">
+    <input v-model="pregunta" type="text" placeholder="Hazme una pregunta" />
+    <p>Recuedra de cuando finalice la pregunta da un "?"</p>
+
+    <h1>{{ pregunta }}</h1>
+    <h2>{{ respuesta }}</h2>
+  </div> 
 </template>
 
 <script>
@@ -51,4 +54,34 @@ export default {
 </script>
 
 <style>
+img {
+  max-height: 100%;
+  height: 100vh;
+  max-width: 100%;
+  width: 100vw;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+}
+
+.seccion-pregunta {
+  position: relative;
+}
+
+h1, h2, p {
+  color: white;
+}
+
+p{
+  font-size: 30px;
+}
+
+input {
+  margin-top: 35%;
+  width: 260px;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 7px;
+  font-size: 18px;
+}
 </style>
